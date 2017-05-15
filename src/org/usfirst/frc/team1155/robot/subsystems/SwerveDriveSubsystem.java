@@ -1,7 +1,5 @@
 package org.usfirst.frc.team1155.robot.subsystems;
 
-import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SwerveDriveSubsystem extends Subsystem{
