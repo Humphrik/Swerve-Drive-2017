@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1155.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SwerveDriveSubsystem extends Subsystem{
@@ -11,13 +12,17 @@ public class SwerveDriveSubsystem extends Subsystem{
 	private static final double DIAGONAL = Math.sqrt(LENGTH*LENGTH + WIDTH*WIDTH);
 	private static double P, I, D;
 	private WheelController frTalon, flTalon, blTalon, brTalon;
-	
+	private Encoder frEnc, flEnc, blEnc, brEnc;
 	public SwerveDriveSubsystem() {
 		// TODO: Find corresponding numbers for each talon.
 		frTalon = new WheelController(P, I, D, 0);
 		flTalon = new WheelController(P, I, D, 1);
 		blTalon = new WheelController(P, I, D, 2);
 		brTalon = new WheelController(P, I, D, 3);
+		frEnc = new Encoder(0,1);
+		flEnc = new Encoder(2, 3);
+		blEnc = new Encoder(4,5);
+		brEnc = new Encoder(6,7);
 		updateJoystickValues(0,0,0);
 	}
 	protected void initDefaultCommand() {
