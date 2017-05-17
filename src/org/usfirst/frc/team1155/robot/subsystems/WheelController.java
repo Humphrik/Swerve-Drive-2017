@@ -1,21 +1,20 @@
 package org.usfirst.frc.team1155.robot.subsystems;
-import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
-public class WheelController extends PIDSubsystem{
+public class WheelController extends PIDSubsystem {
 
-	private CANTalon talon;
+	private CANTalon driveTalon, turnTalon;
 	private int desiredAngle;
-	
-	public WheelController(double p, double i, double d, int talonNum) {
+
+	public WheelController(double p, double i, double d, int driveMotor, int turnMotor) {
 		super(p, i, d);
-		talon = new CANTalon(talonNum);
-		
+		driveTalon = new CANTalon(driveMotor);
+		turnTalon = new CANTalon(turnMotor);
 	}
 
-	
-	//CODE FOR ADJUSTING BASED ON ENCODER TO BE IMPLEMENTED
+	// CODE FOR ADJUSTING BASED ON ENCODER TO BE IMPLEMENTED
 	@Override
 	protected double returnPIDInput() {
 		return 0;
@@ -23,23 +22,26 @@ public class WheelController extends PIDSubsystem{
 
 	@Override
 	protected void usePIDOutput(double output) {
-		
+
 	}
 
 	@Override
 	protected void initDefaultCommand() {
-		
+
 	}
-	
-	public CANTalon getTalon() {
-		return talon;
+
+	public CANTalon getDriveTalon() {
+		return driveTalon;
 	}
-	
+
+	public CANTalon getTurnTalon() {
+		return turnTalon;
+	}
+
 	public double getSpeed() {
 		return talon.get();
 	}
-	
-	
+
 	public void setSpeed(double s) {
 		talon.set(s);
 	}
