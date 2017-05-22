@@ -22,7 +22,7 @@ public class WheelController extends PIDSubsystem {
 	// CODE FOR ADJUSTING BASED ON ENCODER TO BE IMPLEMENTED
 	@Override
 	protected double returnPIDInput() {
-		return encoder.get();
+		return getEncValue();
 	}
 
 	@Override
@@ -31,9 +31,12 @@ public class WheelController extends PIDSubsystem {
 		turnTalon.set(output);
 	}
 
-	public void startAdjustment(double current, double setPoint) {
+	public void startAdjustment(double setPoint) {
+		//Note: setpoint, pre-calculation, is in degrees
+		setPoint *= 1024.0/360;
 		setPoint %= 1024;
 		// Sets angle to corresponding reference angle.
+		double current = getEncValue();
 		setSetpoint((int) (((current - setPoint >= 0 ? 512 : -512) + current - setPoint) / 1024) * 1024 + setPoint);
 		enable();
 	}
@@ -55,6 +58,9 @@ public class WheelController extends PIDSubsystem {
 		return driveTalon.get();
 	}
 
+	public double getEncValue() {
+		return encoder.get();
+	}
 	public void setSpeed(double s) {
 		driveTalon.set(s);
 	}
