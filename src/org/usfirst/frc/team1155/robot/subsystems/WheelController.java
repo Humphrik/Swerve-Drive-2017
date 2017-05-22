@@ -35,6 +35,7 @@ public class WheelController extends PIDSubsystem {
 		setPoint %= 1024;
 		// Sets angle to corresponding reference angle.
 		setSetpoint((int) (((current - setPoint >= 0 ? 512 : -512) + current - setPoint) / 1024) * 1024 + setPoint);
+		enable();
 	}
 
 	@Override
