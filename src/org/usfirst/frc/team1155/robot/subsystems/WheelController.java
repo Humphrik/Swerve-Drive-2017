@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1155.robot.subsystems;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 public class WheelController extends PIDSubsystem {
@@ -39,11 +40,11 @@ public class WheelController extends PIDSubsystem {
 	}
 
 	public double getSpeed() {
-		return talon.get();
+		return driveTalon.get();
 	}
 
 	public void setSpeed(double s) {
-		talon.set(s);
+		driveTalon.set(s);
 	}
 
 	public void setDesiredAngle(int theta) {
