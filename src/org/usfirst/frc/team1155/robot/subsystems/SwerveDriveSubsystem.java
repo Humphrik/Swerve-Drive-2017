@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SwerveDriveSubsystem extends Subsystem {
 
-	private int FWD, STR, RCW;
+	private double FWD, STR, RCW;
 	// TODO: Update for robot's dimensions.
 	private static final double LENGTH = 0;
 	private static final double WIDTH = 0;
@@ -28,28 +28,30 @@ public class SwerveDriveSubsystem extends Subsystem {
 
 	}
 
-	public int getFWD() {
+	public double getFWD() {
 		return FWD;
 	}
 
-	public int getSTR() {
+	public double getSTR() {
 		return STR;
 	}
 
-	public int getRCW() {
+	public double getRCW() {
 		return RCW;
 	}
 
-	public void updateJoystickValues(int f, int s, int r) {
-		FWD = f;
-		STR = s;
-		RCW = r;
-	}
 
 	public void setPID(double pp, double ii, double dd) {
 		P = pp;
 		I = ii;
 		D = dd;
+	}
+
+	public void updateJoystickValues(double f, double s, double r) {
+		// TODO Auto-generated method stub
+		FWD = f;
+		STR = s;
+		RCW = r;
 	}
 
 }
