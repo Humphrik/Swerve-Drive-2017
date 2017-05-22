@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1155.robot.subsystems;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
