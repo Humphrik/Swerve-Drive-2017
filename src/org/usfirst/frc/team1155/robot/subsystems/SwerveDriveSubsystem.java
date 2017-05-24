@@ -1,31 +1,49 @@
 package org.usfirst.frc.team1155.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SwerveDriveSubsystem extends Subsystem {
 
 	private double FWD, STR, RCW;
 	// TODO: Update for robot's dimensions.
-	private static final double LENGTH = 0;
-	private static final double WIDTH = 0;
-	private static final double DIAGONAL = Math.sqrt(LENGTH * LENGTH + WIDTH * WIDTH);
+	public final double LENGTH = 0;
+	public final double WIDTH = 0;
+	public final double DIAGONAL = Math.sqrt(LENGTH * LENGTH + WIDTH * WIDTH);
 	private static double P, I, D;
 	public WheelController frTalon, flTalon, blTalon, brTalon;
 
+	// TODO: Convert this to ADXRS450_GYRO
+	private Gyro gyro;
+
 	public SwerveDriveSubsystem() {
 		// TODO: Find corresponding numbers for each talon.
-		// TODO: Find ports.
+		// TODO: Find encoder ports.
 		frTalon = new WheelController(P, I, D, 0, 1, 0, 1);
 		flTalon = new WheelController(P, I, D, 2, 3, 2, 3);
 		blTalon = new WheelController(P, I, D, 4, 5, 4, 5);
 		brTalon = new WheelController(P, I, D, 6, 7, 6, 7);
 
+		// TODO: Make this a ADXRS450_Gyro
+		gyro = new Gyro(0);
 		updateJoystickValues(0, 0, 0);
 	}
 
 	protected void initDefaultCommand() {
 
+	}
+
+	public WheelController getWheelController(int i) {
+		switch(i) {
+		case 0:
+			return frTalon;
+		case 1:
+			return brTalon;
+		case 2:
+			return blTalon;
+		default:
+			return flTalon;
+		}
 	}
 
 	public double getFWD() {
@@ -40,6 +58,21 @@ public class SwerveDriveSubsystem extends Subsystem {
 		return RCW;
 	}
 
+	public double getAngle() {
+		return gyro.getAngle();
+	}
+
+	public void setFWD(double f) {
+		FWD = f;
+	}
+
+	public void setSTR(double s) {
+		STR = s;
+	}
+
+	public void setRCW(double r) {
+		RCW = r;
+	}
 
 	public void setPID(double pp, double ii, double dd) {
 		P = pp;
