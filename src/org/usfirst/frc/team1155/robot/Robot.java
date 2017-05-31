@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team1155.robot;
 
+import org.usfirst.frc.team1155.robot.commands.DriveCommand;
 import org.usfirst.frc.team1155.robot.commands.ExampleCommand;
 import org.usfirst.frc.team1155.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team1155.robot.subsystems.SwerveDriveSubsystem;
@@ -24,6 +25,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 
     Command autonomousCommand;
+    Command driveCommand;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -33,6 +35,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
         // instantiate the command used for the autonomous period
         autonomousCommand = new ExampleCommand();
+        driveCommand = new DriveCommand();
     }
 	
 	public void disabledPeriodic() {
@@ -57,6 +60,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        if (driveCommand != null) driveCommand.start();
     }
 
     /**
