@@ -36,6 +36,8 @@ public class WheelController extends PIDSubsystem {
 	}
 
 	public void startAdjustment(double setPoint) {
+		if (getPIDController().isEnabled())
+			disable();
 		// Note: setpoint, pre-calculation, is in degrees
 		setPoint *= 1024.0 / 360;
 		setPoint %= 1024;

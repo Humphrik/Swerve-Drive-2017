@@ -1,7 +1,8 @@
 package org.usfirst.frc.team1155.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 public class SwerveDriveSubsystem extends Subsystem {
 
@@ -25,7 +26,7 @@ public class SwerveDriveSubsystem extends Subsystem {
 		brTalon = new WheelController(P, I, D, 6, 7, 6, 7);
 
 		// TODO: Make this a ADXRS450_Gyro
-		gyro = new Gyro(0);
+		gyro = new AnalogGyro(0);
 		updateJoystickValues(0, 0, 0);
 	}
 
